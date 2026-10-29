@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>𝔑𝔬𝔠𝔱𝔴𝔬𝔯𝔫 — Video Archive</title>
+
+    <style>
+        /* ==============================
+           ОСНОВНЫЕ НАСТРОЙКИ
+           ============================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #080808;
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.82)
+                ),
+                url("images/Noctworn.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            color: #aaa;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        /* ==============================
+           ШАПКА
+           ============================== */
+
+        header {
+            padding: 32px 15px 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ddd;
+            font-size: 38px;
+            font-weight: normal;
+            letter-spacing: 7px;
+        }
+
+        /* ==============================
+           ОСНОВНОЙ КОНТЕНТ
+           ============================== */
+
+        main {
+            width: 100%;
+            max-width: 940px;
+            margin: 35px auto 55px;
+            padding: 0 24px;
+        }
+
+        .archive-title {
+            margin: 0 0 40px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #292323;
+
+            color: #c5baba;
+            font-size: 22px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        /* ==============================
+           КАРТОЧКА ВИДЕО
+           ============================== */
+
+        .video-entry {
+            position: relative;
+            isolation: isolate;
+            margin: 60px 0;
+            padding: 28px 24px 26px;
+
+            background-color: rgba(3, 3, 3, 0.84);
+            border: 1px solid #514747;
+            outline: 1px solid rgba(95, 85, 85, 0.3);
+            outline-offset: 5px;
+
+            box-shadow:
+                inset 0 0 0 5px rgba(0, 0, 0, 0.65),
+                inset 0 0 25px rgba(30, 0, 0, 0.12),
+                0 12px 35px rgba(0, 0, 0, 0.5);
+
+            /* Декоративные углы */
+            background-image:
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363),
+                linear-gradient(#706363, #706363);
+
+            background-size:
+                24px 1px, 1px 24px,
+                24px 1px, 1px 24px,
+                24px 1px, 1px 24px,
+                24px 1px, 1px 24px;
+
+            background-position:
+                top 10px left 10px,
+                top 10px left 10px,
+                top 10px right 10px,
+                top 10px right 10px,
+                bottom 10px left 10px,
+                bottom 10px left 10px,
+                bottom 10px right 10px,
+                bottom 10px right 10px;
+
+            background-repeat: no-repeat;
+        }
+
+        /* Декоративные символы по углам */
+
+        .video-entry::before {
+            content: "✧";
+            position: absolute;
+            z-index: 2;
+            top: -22px;
+            left: -17px;
+
+            color: #aaa0a0;
+            font-size: 27px;
+            line-height: 1;
+            text-shadow: 0 0 8px rgba(120, 20, 20, 0.35);
+
+            pointer-events: none;
+        }
+
+        .video-entry::after {
+            content: "✧";
+            position: absolute;
+            z-index: 2;
+            right: -17px;
+            bottom: -22px;
+
+            color: #aaa0a0;
+            font-size: 27px;
+            line-height: 1;
+            text-shadow: 0 0 8px rgba(120, 20, 20, 0.35);
+
+            pointer-events: none;
+        }
+
+        /* Название записи */
+
+        .video-entry h3 {
+            margin: 0 0 12px;
+            padding: 0 0 13px;
+
+            border-bottom: 1px solid #393131;
+
+            color: #d0c7c7;
+            font-size: 17px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            line-height: 1.7;
+            text-transform: uppercase;
+
+            overflow-wrap: anywhere;
+        }
+
+        .video-entry h3::before {
+            content: "☽ ";
+            color: #887777;
+            font-size: 16px;
+        }
+
+        /* Дата и описание */
+
+        .video-entry p {
+            margin: 0 0 22px;
+
+            color: #898080;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+        }
+
+        /* ==============================
+           РАМКА ВОКРУГ ВИДЕО
+           ============================== */
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding: 8px;
+
+            background: #050505;
+            border: 1px solid #494141;
+            box-shadow:
+                0 0 0 2px #171313,
+                inset 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-frame video {
+            display: block;
+            width: 100%;
+            max-height: 500px;
+
+            background: #000;
+            border: 1px solid #252020;
+        }
+
+        /* ==============================
+           ТЕКСТ В КОНЦЕ АРХИВА
+           ============================== */
+
+        .empty {
+            margin: 55px 0 20px;
+            padding: 20px 0;
+
+            color: #666;
+            font-size: 13px;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* ==============================
+           ПОДВАЛ
+           ============================== */
+
+        footer {
+            padding: 30px 15px;
+            border-top: 1px solid #222;
+
+            color: #555;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* ==============================
+           МОБИЛЬНАЯ ВЕРСИЯ
+           ============================== */
+
+        @media (max-width: 600px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            header {
+                padding: 26px 12px 20px;
+            }
+
+            header h1 {
+                font-size: 27px;
+                letter-spacing: 4px;
+            }
+
+            main {
+                margin-top: 25px;
+                padding: 0 18px;
+            }
+
+            .archive-title {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            .video-entry {
+                margin: 45px 0;
+                padding: 22px 14px 18px;
+            }
+
+            .video-entry h3 {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+
+            .video-entry p {
+                font-size: 12px;
+            }
+
+            .video-entry::before {
+                left: -10px;
+                font-size: 22px;
+            }
+
+            .video-entry::after {
+                right: -10px;
+                font-size: 22px;
+            }
+
+            .video-frame {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>𝔑𝔬𝔠𝔱𝔴𝔬𝔯𝔫</h1>
+    </header>
+
+    <main>
+        <h2 class="archive-title">АРХИВ РЕПЕТИЦИЙ</h2>
+
+        <section id="video-archive" aria-label="Архив репетиций">
+            <!-- Записи добавляются скриптом ниже -->
+        </section>
+
+        <p class="empty">
+            Архив будет пополняться. Новые записи появятся здесь.
+        </p>
+    </main>
+
+    <footer>
+        𝔑𝔬𝔠𝔱𝔴𝔬𝔯𝔫 — 2026
+    </footer>
+
+    <script>
+        const videos = [
+            ["01", "24.08.2026", "0.1"],
+            ["02", "24.08.2026", "0.2"],
+            ["03", "30.08.2026", "0.3"],
+            ["04", "02.09.2026", "0.4"],
+            ["05", "04.09.2026", "0.5"],
+            ["06", "05.09.2026", "0.6"],
+            ["07", "05.09.2026", "0.7"],
+            ["08", "06.09.2026", "0.8"],
+            ["09", "06.09.2026", "0.9"],
+            ["10", "09.09.2026", "1.1"],
+            ["11", "09.09.2026", "1.2"],
+            ["12", "09.09.2026", "1.3"],
+            ["13", "12.09.2026", "1.4"],
+            ["14", "12.09.2026", "1.5"],
+            ["15", "13.09.2026", "1.6"],
+            ["16", "20.09.2026", "1.7"],
+            ["17", "20.09.2026", "1.8"],
+            ["18", "28.09.2026", "1.9"],
+            ["19", "29.09.2026", "2.1"],
+            ["20", "29.09.2026", "2.2"],
+            ["21", "04.10.2026", "2.3"],
+            ["22", "04.10.2026", "2.4"],
+            ["23", "05.10.2026", "2.5"],
+            ["24", "05.10.2026", "2.6"],
+            ["25", "07.10.2026", "2.7"],
+            ["26", "07.10.2026", "2.8"],
+            ["27", "08.10.2026", "2.9"],
+            ["28", "08.10.2026", "3.1"],
+            ["29", "09.10.2026", "3.2"],
+            ["30", "09.10.2026", "3.3"],
+            ["31", "09.10.2026", "3.4"],
+            ["32", "10.10.2026", "3.5"],
+            ["33", "12.04.2026", "3.6"],
+            ["34", "12.04.2026", "3.7"],
+            ["35", "12.04.2026", "3.8"],
+            ["36", "17.10.2026", "3.9"],
+            ["37", "17.10.2026", "4.1"],
+            ["38", "17.10.2026", "4.2"],
+            ["39", "19.10.2026", "4.3"],
+            ["40", "19.10.2026", "4.4"],
+            ["41", "19.10.2026", "4.5"],
+			["42", "27.10.2026", "4.6"],
+			["43", "27.10.2026", "4.7"]
+        ];
+
+        const archive = document.getElementById("video-archive");
+
+        videos.forEach(function (item) {
+            const number = item[0];
+            const date = item[1];
+            const file = item[2];
+
+            const entry = document.createElement("article");
+            entry.className = "video-entry";
+
+            const title = document.createElement("h3");
+            title.textContent =
+                number + ". Репетиция — запись № " +
+                parseInt(number, 10);
+
+            const description = document.createElement("p");
+            description.textContent =
+                "Репетиционная запись / Дата: " + date;
+
+            const frame = document.createElement("div");
+            frame.className = "video-frame";
+
+            const video = document.createElement("video");
+            video.controls = true;
+            video.preload = "metadata";
+
+            const source = document.createElement("source");
+            source.src = "videos/" + encodeURI("Репетиция " + file + ".mp4");
+            source.type = "video/mp4";
+
+            video.appendChild(source);
+            video.appendChild(
+                document.createTextNode(
+                    "Ваш браузер не поддерживает воспроизведение видео."
+                )
+            );
+
+            frame.appendChild(video);
+            entry.appendChild(title);
+            entry.appendChild(description);
+            entry.appendChild(frame);
+
+            archive.appendChild(entry);
+        });
+    </script>
+
+</body>
+</html>
